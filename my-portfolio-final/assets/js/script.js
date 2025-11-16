@@ -80,16 +80,11 @@ var typed = new Typed(".typing-text", {
 // <!-- typed js effect ends -->
 
 async function fetchData(type = "skills") {
-    let response;
-    if (type === "skills") {
-        response = await fetch("/skills.json");
-    } else {
-        response = await fetch("/projects.json");
-    }
-    if (!response.ok) {
-        console.error(`Lỗi fetch ${type}: ${response.status} - ${response.url}`);  // Thêm dòng này để debug
-        return [];  // Trả về mảng rỗng nếu lỗi
-    }
+    let response
+    type === "skills" ?
+        response = await fetch("skills.json")
+        :
+        response = await fetch("./projects/projects.json")
     const data = await response.json();
     return data;
 }
